@@ -140,3 +140,14 @@ h2 {
   font-family: "Farsan", cursive;
   font-weight: bold;
 }
+
+.myLink {
+  font-family: "Farsan", cursive;
+  font-weight: bold;
+  color: antiquewhite;
+  background-color: rgba(61, 156, 150, 0.6);
+  text-align: center;
+  width: 75px;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
