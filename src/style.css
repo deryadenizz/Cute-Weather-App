@@ -1,0 +1,142 @@
+.container {
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 640px;
+  height: 960px;
+  border-radius: 15px;
+  position: relative;
+  margin-top: 20px;
+  padding: 20px 0px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.day {
+  background-image: url(../images/sun.jpg);
+}
+
+.night {
+  background-image: url(../images/moon.jpg);
+}
+
+.header {
+  text-align: center;
+  color: #4da18e;
+  background-color: rgba(255, 251, 167, 0.6);
+  border-radius: 34px;
+  padding: 28px 75px;
+  margin: 100px auto 0;
+  box-sizing: border-box;
+  max-width: 70%;
+}
+
+h1 {
+  font-family: "Farsan", cursive;
+  font-weight: bold;
+  font-size: 73px;
+  display: inline-block;
+  padding: 20px 20px 0px 20px;
+}
+
+.date-time {
+  font-family: "Lobster", cursive;
+  font-size: 23px;
+  color: #36837e;
+  margin-top: 0px;
+}
+
+.degree {
+  font-family: "Lobster", cursive;
+  font-size: 25px;
+  color: rgb(61, 156, 150);
+  vertical-align: top;
+}
+
+h2 {
+  display: inline-block;
+  font-size: 90px;
+  margin-left: 50px;
+  color: rgb(36, 95, 91);
+  padding: 0px 0px 30px 30px;
+}
+
+.form {
+  padding: 0px 5px;
+}
+
+.form-control {
+  width: 450px;
+  display: inline-block;
+  margin-left: 30px;
+  padding-right: 5px;
+  border-radius: 7px;
+  opacity: 0.6;
+  background-color: rgb(255, 251, 167);
+}
+
+.btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  text-align: left;
+  padding-left: 10px;
+  margin-right: 12px;
+  margin-left: 8px;
+
+  background-color: rgba(255, 251, 167, 0.7);
+  border: 0px;
+}
+
+.future-log {
+  position: absolute;
+  text-align: center;
+  bottom: 60px;
+  left: 20px;
+}
+.col.today {
+  color: antiquewhite;
+  background-color: rgba(61, 156, 150, 0.6);
+  border-radius: 8px;
+  margin-left: 30px;
+  width: 170px;
+  padding: 0px;
+}
+.tomorrow {
+  color: antiquewhite;
+  background-color: rgba(61, 156, 150, 0.6);
+  border-radius: 8px;
+  margin: 0px 30px;
+  width: 170px;
+  padding: 0px;
+}
+.other-day {
+  color: antiquewhite;
+  background-color: rgba(61, 156, 150, 0.6);
+  border-radius: 8px;
+  margin-right: 30px;
+  width: 170px;
+  padding: 0px;
+}
+.emoji {
+  font-size: 40px;
+}
+.max {
+  font-size: 33px;
+  font-family: "Farsan", cursive;
+  font-weight: 500;
+}
+.min {
+  font-size: 18px;
+  font-family: "Farsan", cursive;
+  font-weight: small;
+  padding-top: 0px;
+}
+.time-day {
+  font-size: 22px;
+  padding-bottom: 15px;
+  font-family: "Farsan", cursive;
+  font-weight: bold;
+}
