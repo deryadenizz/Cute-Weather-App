@@ -40,26 +40,8 @@ function formatDate() {
 }
 document.querySelector(".date-time").innerHTML = formatDate();
 
-/* let celsiusValue = response.data.main.temp;
-function Fahrenheit(event) {
-  event.preventDefault();
-  let tempC = document.querySelector(".temperature");
-  let tempFValue = Math.round((celsiusValue * 9) / 5 + 32);
-  tempC.innerHTML = `${tempFValue}°`;
-}
-
-function Celcius(event) {
-  event.preventDefault();
-  let tempF = document.querySelector(".temperature");
-  tempF.innerHTML = `${celsiusValue}°`;
-}
-
-let changeF = document.querySelector("#fahrenheit-link");
-changeF.addEventListener("click", Fahrenheit);
-let changeC = document.querySelector("#celsius-link");
-changeC.addEventListener("click", Celcius);
-*/
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data);
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row">`;
   let days = ["tue", "wed", "thu"];
@@ -81,6 +63,12 @@ function displayForecast() {
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
+
+function getForecast(coordinates) {
+  let apiURL = `https://api.shecodes.io/weather/v1/forecast?query=${cityName}&key=${apiKey}&units=metric`;
+  console.log(apiURL);
+  axios.get(apiURL).then(displayForecast);
+}
 function showCity(event) {
   event.preventDefault();
   let show = document.querySelector("#validationServer03");
@@ -92,7 +80,7 @@ function showCity(event) {
   let input = document.querySelector("#validationServer03");
   input.value = "";
   apiUrl = `https://api.shecodes.io/weather/v1/current?query=${cityName}}&key=${apiKey}&units=metric`;
-  https: axios.get(apiUrl).then(showCurrentWeather);
+  axios.get(apiUrl).then(showCurrentWeather);
 }
 
 let showLocation = document.querySelector("#selectCity");
@@ -110,19 +98,15 @@ function showCurrentWeather(response) {
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
   celsiusTemp = Math.round(response.data.temperature.current);
-  /*   let todayWeatherMax = document.querySelector(".today.max");
-  let todayTempMax = Math.round(response.data.main.temp_max);
-  todayWeatherMax.innerHTML = `${todayTempMax}°C`;
-  let todayWeatherMin = document.querySelector(".today.min");
-  let todayTempMin = Math.round(response.data.main.temp_min);
-  todayWeatherMin.innerHTML = `${todayTempMin}°C`; */
+
+  getForecast(response.data.city);
 }
 
 function getCurrentPosition(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
   apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
-  https: axios.get(apiUrl).then(displayWeather);
+  axios.get(apiUrl).then(displayWeather);
 }
 function displayWeather(response) {
   let h2 = document.querySelector("h2");
@@ -139,13 +123,6 @@ function displayWeather(response) {
   let description = document.querySelector(".todaydesc");
   description.innerHTML = `${response.data.condition.description}`;
   celsiusTemp = Math.round(response.data.temperature.current);
-
-  /*   let todayWeatherMax = document.querySelector(".today.max");
-  let todayTempMax = Math.round(response.data.main.temp_max);
-  todayWeatherMax.innerHTML = `${todayTempMax}°C`;
-  let todayWeatherMin = document.querySelector(".today.min");
-  let todayTempMin = Math.round(response.data.main.temp_min);
-  todayWeatherMin.innerHTML = `${todayTempMin}°C`; */
 }
 
 let locateBtn = document.querySelector(".locate");
@@ -155,7 +132,7 @@ locateBtn.addEventListener("click", function () {
 let apiKey = "c9e178d3343o502b6177fca9t3bf1da8";
 let cityName = "İstanbul";
 let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${cityName}}&key=${apiKey}&units=metric`;
-https: axios.get(apiUrl).then(showCurrentWeather);
+axios.get(apiUrl).then(showCurrentWeather);
 
 function showFahrenheitTemp(event) {
   event.preventDefault();
@@ -174,7 +151,6 @@ function showCelsiusTemp(event) {
 }
 
 let celsiusTemp = null;
-displayForecast();
 
 let fahrenheitlink = document.querySelector("#fahrenheit-link");
 fahrenheitlink.addEventListener("click", showFahrenheitTemp);
