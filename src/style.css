@@ -144,10 +144,9 @@ h2 {
 .myLink {
   font-family: "Farsan", cursive;
   font-weight: bold;
-  color: antiquewhite;
-  background-color: rgba(61, 156, 150, 0.6);
+  color: rgba(61, 156, 150, 0.6);
   text-align: center;
-  width: 75px;
+  width: 275px;
   box-sizing: border-box;
   margin: 0 auto;
 }
