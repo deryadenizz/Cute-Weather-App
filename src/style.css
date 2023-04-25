@@ -150,3 +150,11 @@ h2 {
   box-sizing: border-box;
   margin: 0 auto;
 }
+
+.degree .active {
+  color: #4da18e;
+  cursor: default;
+}
+.degree .active:hover {
+  text-decoration: none;
+}

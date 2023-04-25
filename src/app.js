@@ -138,11 +138,15 @@ function showFahrenheitTemp(event) {
   let fahrenheitTemp = Math.round((celsiusTemp * 9) / 5 + 32);
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = `${fahrenheitTemp}°`;
+  celsiuslink.classList.remove("active");
+  fahrenheitlink.classList.add("active");
 }
 function showCelsiusTemp(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = `${celsiusTemp}°`;
+  celsiuslink.classList.add("active");
+  fahrenheitlink.classList.remove("active");
 }
 
 let celsiusTemp = null;
