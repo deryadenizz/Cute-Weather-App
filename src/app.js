@@ -58,9 +58,8 @@ let changeF = document.querySelector("#fahrenheit-link");
 changeF.addEventListener("click", Fahrenheit);
 let changeC = document.querySelector("#celsius-link");
 changeC.addEventListener("click", Celcius);
- */
-let apiKey = "c9e178d3343o502b6177fca9t3bf1da8";
-let apiUrl = "";
+*/
+
 function showCity(event) {
   event.preventDefault();
   let show = document.querySelector("#validationServer03");
@@ -72,7 +71,6 @@ function showCity(event) {
   let input = document.querySelector("#validationServer03");
   input.value = "";
   apiUrl = `https://api.shecodes.io/weather/v1/current?query=${cityName}}&key=${apiKey}&units=metric`;
-
   https: axios.get(apiUrl).then(showCurrentWeather);
 }
 
@@ -136,3 +134,7 @@ let locateBtn = document.querySelector(".locate");
 locateBtn.addEventListener("click", function () {
   navigator.geolocation.getCurrentPosition(getCurrentPosition);
 });
+let apiKey = "c9e178d3343o502b6177fca9t3bf1da8";
+let cityName = "İstanbul";
+let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${cityName}}&key=${apiKey}&units=metric`;
+https: axios.get(apiUrl).then(showCurrentWeather);
