@@ -59,7 +59,28 @@ changeF.addEventListener("click", Fahrenheit);
 let changeC = document.querySelector("#celsius-link");
 changeC.addEventListener("click", Celcius);
 */
-
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row">`;
+  let days = ["tue", "wed", "thu"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+             <div class="col-sm-4 today">
+               <div class="today emoji">
+                 <img src=".." alt="" id="todayicon" />
+               </div>
+               <div class="today todaydesc">Cloudy</div>
+               <div class="today max">15°C</div>
+               <div class="today min">min 8°</div>
+               <br />
+               <div class="time-day">${day}</div>
+             </div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
 function showCity(event) {
   event.preventDefault();
   let show = document.querySelector("#validationServer03");
@@ -153,6 +174,7 @@ function showCelsiusTemp(event) {
 }
 
 let celsiusTemp = null;
+displayForecast();
 
 let fahrenheitlink = document.querySelector("#fahrenheit-link");
 fahrenheitlink.addEventListener("click", showFahrenheitTemp);
