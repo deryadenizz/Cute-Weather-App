@@ -87,20 +87,13 @@ function showCurrentWeather(response) {
     "src",
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
-  let todayWeatherMax = document.querySelector(".today.max");
+  celsiusTemp = Math.round(response.data.temperature.current);
+  /*   let todayWeatherMax = document.querySelector(".today.max");
   let todayTempMax = Math.round(response.data.main.temp_max);
   todayWeatherMax.innerHTML = `${todayTempMax}°C`;
   let todayWeatherMin = document.querySelector(".today.min");
   let todayTempMin = Math.round(response.data.main.temp_min);
-  todayWeatherMin.innerHTML = `${todayTempMin}°C`;
-
-  /*   let tomWeather = document.querySelector(".tom.max");
-  let tomTempMax = Math.round(response.data.main.temp_max);
-  tomWeather.innerHTML = `${tomTempMax}°C`;
-  
-  let otherWeather = document.querySelector(".other.max");
-  let otherTempMax = Math.round(response.data.main.temp_max);
-  otherWeather.innerHTML = `${otherTempMax}°C`; */
+  todayWeatherMin.innerHTML = `${todayTempMin}°C`; */
 }
 
 function getCurrentPosition(position) {
@@ -121,13 +114,14 @@ function displayWeather(response) {
     "src",
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
+  celsiusTemp = Math.round(response.data.temperature.current);
 
-  let todayWeatherMax = document.querySelector(".today.max");
+  /*   let todayWeatherMax = document.querySelector(".today.max");
   let todayTempMax = Math.round(response.data.main.temp_max);
   todayWeatherMax.innerHTML = `${todayTempMax}°C`;
   let todayWeatherMin = document.querySelector(".today.min");
   let todayTempMin = Math.round(response.data.main.temp_min);
-  todayWeatherMin.innerHTML = `${todayTempMin}°C`;
+  todayWeatherMin.innerHTML = `${todayTempMin}°C`; */
 }
 
 let locateBtn = document.querySelector(".locate");
@@ -138,3 +132,23 @@ let apiKey = "c9e178d3343o502b6177fca9t3bf1da8";
 let cityName = "İstanbul";
 let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${cityName}}&key=${apiKey}&units=metric`;
 https: axios.get(apiUrl).then(showCurrentWeather);
+
+function showFahrenheitTemp(event) {
+  event.preventDefault();
+  let fahrenheitTemp = Math.round((celsiusTemp * 9) / 5 + 32);
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = `${fahrenheitTemp}°`;
+}
+function showCelsiusTemp(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = `${celsiusTemp}°`;
+}
+
+let celsiusTemp = null;
+
+let fahrenheitlink = document.querySelector("#fahrenheit-link");
+fahrenheitlink.addEventListener("click", showFahrenheitTemp);
+
+let celsiuslink = document.querySelector("#celsius-link");
+celsiuslink.addEventListener("click", showCelsiusTemp);
