@@ -59,7 +59,7 @@ changeF.addEventListener("click", Fahrenheit);
 let changeC = document.querySelector("#celsius-link");
 changeC.addEventListener("click", Celcius);
  */
-let apiKey = "50894e1a624fc3aa214db2bfa37fa984";
+let apiKey = "c9e178d3343o502b6177fca9t3bf1da8";
 let apiUrl = "";
 function showCity(event) {
   event.preventDefault();
@@ -70,9 +70,9 @@ function showCity(event) {
   heading.textContent = cityName;
   let input = document.querySelector("#validationServer03");
   input.value = "";
-  apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
+  apiUrl = `https://api.shecodes.io/weather/v1/current?query=${cityName}}&key=${apiKey}&units=metric`;
 
-  axios.get(apiUrl).then(showCurrentWeather);
+  https: axios.get(apiUrl).then(showCurrentWeather);
 }
 
 let showLocation = document.querySelector("#selectCity");
@@ -80,7 +80,7 @@ showLocation.addEventListener("submit", showCity);
 
 function showCurrentWeather(response) {
   let weatherHeader = document.querySelector("h2");
-  let temp = Math.round(response.data.main.temp);
+  let temp = Math.round(response.data.temperature.current);
   weatherHeader.innerHTML = `${temp}°`;
 
   let todayWeatherMax = document.querySelector(".today.max");
@@ -102,15 +102,15 @@ function showCurrentWeather(response) {
 function getCurrentPosition(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
-  apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayWeather);
+  apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
+  https: axios.get(apiUrl).then(displayWeather);
 }
 function displayWeather(response) {
   let h2 = document.querySelector("h2");
-  let temp = Math.round(response.data.main.temp);
+  let temp = Math.round(response.data.temperature.current);
   h2.innerHTML = `${temp}°`;
   let h1 = document.querySelector("h1");
-  let city = response.data.name;
+  let city = response.data.city;
   h1.innerHTML = `${city}`;
 
   let todayWeatherMax = document.querySelector(".today.max");
