@@ -158,3 +158,6 @@ h2 {
 .degree .active:hover {
   text-decoration: none;
 }
+.todaydesc {
+  text-transform: capitalize;
+}

@@ -81,7 +81,8 @@ function showCurrentWeather(response) {
   let weatherHeader = document.querySelector("h2");
   let temp = Math.round(response.data.temperature.current);
   weatherHeader.innerHTML = `${temp}°`;
-
+  let description = document.querySelector(".todaydesc");
+  description.innerHTML = `${response.data.condition.description}`;
   let iconElement = document.querySelector("#todayicon");
   iconElement.setAttribute(
     "src",
@@ -114,6 +115,8 @@ function displayWeather(response) {
     "src",
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
+  let description = document.querySelector(".todaydesc");
+  description.innerHTML = `${response.data.condition.description}`;
   celsiusTemp = Math.round(response.data.temperature.current);
 
   /*   let todayWeatherMax = document.querySelector(".today.max");
