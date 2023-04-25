@@ -68,6 +68,7 @@ function showCity(event) {
   cityName = cityName.charAt(0).toUpperCase() + cityName.slice(1);
   let heading = document.querySelector("h1");
   heading.textContent = cityName;
+
   let input = document.querySelector("#validationServer03");
   input.value = "";
   apiUrl = `https://api.shecodes.io/weather/v1/current?query=${cityName}}&key=${apiKey}&units=metric`;
@@ -83,6 +84,11 @@ function showCurrentWeather(response) {
   let temp = Math.round(response.data.temperature.current);
   weatherHeader.innerHTML = `${temp}°`;
 
+  let iconElement = document.querySelector("#todayicon");
+  iconElement.setAttribute(
+    "src",
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+  );
   let todayWeatherMax = document.querySelector(".today.max");
   let todayTempMax = Math.round(response.data.main.temp_max);
   todayWeatherMax.innerHTML = `${todayTempMax}°C`;
@@ -93,7 +99,7 @@ function showCurrentWeather(response) {
   /*   let tomWeather = document.querySelector(".tom.max");
   let tomTempMax = Math.round(response.data.main.temp_max);
   tomWeather.innerHTML = `${tomTempMax}°C`;
-
+  
   let otherWeather = document.querySelector(".other.max");
   let otherTempMax = Math.round(response.data.main.temp_max);
   otherWeather.innerHTML = `${otherTempMax}°C`; */
@@ -112,6 +118,11 @@ function displayWeather(response) {
   let h1 = document.querySelector("h1");
   let city = response.data.city;
   h1.innerHTML = `${city}`;
+  let iconElement = document.querySelector("#todayicon");
+  iconElement.setAttribute(
+    "src",
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+  );
 
   let todayWeatherMax = document.querySelector(".today.max");
   let todayTempMax = Math.round(response.data.main.temp_max);
