@@ -47,6 +47,10 @@ function formatForecastDay(timestamp) {
   return days[day];
 }
 
+let apiKey = "c9e178d3343o502b6177fca9t3bf1da8";
+let cityName = "İstanbul";
+let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${cityName}}&key=${apiKey}&units=metric`;
+axios.get(apiUrl).then(showCurrentWeather);
 function displayForecast(response) {
   console.log(response.data.daily);
   let forecast = response.data.daily;
@@ -67,9 +71,9 @@ function displayForecast(response) {
                <div class="today max">${Math.round(
                  forecastday.temperature.maximum
                )}°C</div>
-               <div class="today min"${Math.round(
+               <div class="today min">${Math.round(
                  forecastday.temperature.minimum
-               )} 8°</div>
+               )}°</div>
                <br />
                <div class="time-day">${formatForecastDay(
                  forecastday.time
@@ -81,7 +85,7 @@ function displayForecast(response) {
   forecastElement.innerHTML = forecastHTML;
 }
 
-function getForecast(coordinates) {
+function getForecast(cityName) {
   let apiKey = "c9e178d3343o502b6177fca9t3bf1da8";
   let apiURL = `https://api.shecodes.io/weather/v1/forecast?query=${cityName}&key=${apiKey}&units=metric`;
   console.log(apiURL);
@@ -99,6 +103,7 @@ function showCity(event) {
   input.value = "";
   apiUrl = `https://api.shecodes.io/weather/v1/current?query=${cityName}}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showCurrentWeather);
+  getForecast(cityName);
 }
 
 let showLocation = document.querySelector("#selectCity");
@@ -109,7 +114,7 @@ function showCurrentWeather(response) {
   let temp = Math.round(response.data.temperature.current);
   weatherHeader.innerHTML = `${temp}°`;
   celsiusTemp = Math.round(response.data.temperature.current);
-
+  console.log(response.data.temperature.current);
   getForecast(response.data.city);
 }
 
@@ -134,10 +139,6 @@ let locateBtn = document.querySelector(".locate");
 locateBtn.addEventListener("click", function () {
   navigator.geolocation.getCurrentPosition(getCurrentPosition);
 });
-let apiKey = "c9e178d3343o502b6177fca9t3bf1da8";
-let cityName = "İstanbul";
-let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${cityName}}&key=${apiKey}&units=metric`;
-axios.get(apiUrl).then(showCurrentWeather);
 
 function showFahrenheitTemp(event) {
   event.preventDefault();
