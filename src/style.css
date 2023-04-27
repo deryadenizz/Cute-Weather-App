@@ -140,8 +140,13 @@ h2 {
 .degree .active {
   color: #4da18e;
   cursor: default;
+  pointer-events: none;
+  text-decoration: none;
 }
 .degree .active:hover {
+  text-decoration: none;
+  cursor: default;
+  pointer-events: none;
   text-decoration: none;
 }
 .todaydesc {
