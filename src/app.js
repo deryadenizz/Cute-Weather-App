@@ -186,7 +186,6 @@ function showCelsiusTemp(event) {
   );
   forecastTempMaxElements.forEach(function (forecastTempElement) {
     fahrenheitTemp = parseFloat(forecastTempElement.innerHTML);
-    celsiusTemp = Math.round(((fahrenheitTemp - 32) * 5) / 9);
     forecastTempElement.innerHTML = `${celsiusTemp}°`;
   });
   let forecastTempMinElements = document.querySelectorAll(
@@ -194,7 +193,6 @@ function showCelsiusTemp(event) {
   );
   forecastTempMinElements.forEach(function (forecastTempElement) {
     fahrenheitTemp = parseFloat(forecastTempElement.innerHTML);
-    celsiusTemp = Math.round(((fahrenheitTemp - 32) * 5) / 9);
     forecastTempElement.innerHTML = `${celsiusTemp}°`;
   });
 
