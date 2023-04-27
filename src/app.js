@@ -59,7 +59,6 @@ let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${cityName}}&key=
 axios.get(apiUrl).then(showCurrentWeather);
 
 function displayForecast(response) {
-  console.log(response.data.daily);
   let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row">`;
@@ -96,7 +95,6 @@ function displayForecast(response) {
 function getForecast(cityName) {
   let apiKey = "c9e178d3343o502b6177fca9t3bf1da8";
   let apiURL = `https://api.shecodes.io/weather/v1/forecast?query=${cityName}&key=${apiKey}&units=metric`;
-  console.log(apiURL);
   axios.get(apiURL).then(displayForecast);
 }
 function showCity(event) {
@@ -122,7 +120,6 @@ function showCurrentWeather(response) {
   let temp = Math.round(response.data.temperature.current);
   weatherHeader.innerHTML = `${temp}°`;
   celsiusTemp = Math.round(response.data.temperature.current);
-  console.log(response.data.temperature.current);
   getForecast(response.data.city);
 }
 
