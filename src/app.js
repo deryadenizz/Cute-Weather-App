@@ -40,10 +40,16 @@ function formatDate() {
 }
 document.querySelector(".date-time").innerHTML = formatDate();
 
-function formatForecastDay(timestamp) {
+function formatForecastDay(timestamp, index) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  if (index === 0) {
+    return "Today";
+  }
+  if (index === 1) {
+    return "Tomorrow";
+  }
   return days[day];
 }
 
@@ -51,6 +57,7 @@ let apiKey = "c9e178d3343o502b6177fca9t3bf1da8";
 let cityName = "İstanbul";
 let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${cityName}}&key=${apiKey}&units=metric`;
 axios.get(apiUrl).then(showCurrentWeather);
+
 function displayForecast(response) {
   console.log(response.data.daily);
   let forecast = response.data.daily;
@@ -76,7 +83,8 @@ function displayForecast(response) {
                )}°</div>
                <br />
                <div class="time-day">${formatForecastDay(
-                 forecastday.time
+                 forecastday.time,
+                 index
                )}</div>
              </div>`;
     }
@@ -123,6 +131,7 @@ function getCurrentPosition(position) {
   let lon = position.coords.longitude;
   apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayWeather);
+  getForecast(cityName);
 }
 function displayWeather(response) {
   let h2 = document.querySelector("h2");
@@ -131,6 +140,7 @@ function displayWeather(response) {
   let h1 = document.querySelector("h1");
   let city = response.data.city;
   h1.innerHTML = `${city}`;
+  getForecast(response.data.city);
 
   celsiusTemp = Math.round(response.data.temperature.current);
 }
