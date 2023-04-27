@@ -83,7 +83,6 @@ function displayForecast(response) {
 
 function getForecast(coordinates) {
   let apiKey = "c9e178d3343o502b6177fca9t3bf1da8";
-  let cityName = document.querySelector("#validationServer03");
   let apiURL = `https://api.shecodes.io/weather/v1/forecast?query=${cityName}&key=${apiKey}&units=metric`;
   console.log(apiURL);
   axios.get(apiURL).then(displayForecast);
@@ -136,9 +135,8 @@ locateBtn.addEventListener("click", function () {
   navigator.geolocation.getCurrentPosition(getCurrentPosition);
 });
 let apiKey = "c9e178d3343o502b6177fca9t3bf1da8";
-/* let cityName = "İstanbul"; */
-/*  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${cityName}}&key=${apiKey}&units=metric`;
- */ let apiUrl = "";
+let cityName = "İstanbul";
+let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${cityName}}&key=${apiKey}&units=metric`;
 axios.get(apiUrl).then(showCurrentWeather);
 
 function showFahrenheitTemp(event) {
