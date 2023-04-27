@@ -179,7 +179,6 @@ function showCelsiusTemp(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperature");
   let fahrenheitTemp = parseFloat(temperatureElement.innerHTML);
-  let celsiusTemp = Math.round(((fahrenheitTemp - 32) * 5) / 9);
   temperatureElement.innerHTML = `${celsiusTemp}°`;
 
   let forecastTempMaxElements = document.querySelectorAll(
