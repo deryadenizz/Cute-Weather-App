@@ -152,28 +152,6 @@ locateBtn.addEventListener("click", function () {
 
 function showFahrenheitTemp(event) {
   event.preventDefault();
-  let fahrenheitTemp = Math.round((celsiusTemp * 9) / 5 + 32);
-  let temperatureElement = document.querySelector("#temperature");
-  let forecastTempElement = document.querySelectorAll("#forecasttemp-max");
-  forecastTempElement.forEach((element) => {
-    let celsiusTemp = parseInt(element.data.daily.temperature.maximum);
-    let fahrenheitTemp = Math.round((celsiusTemp * 9) / 5 + 32);
-    element.innerHTML = `${fahrenheitTemp}°`;
-  });
-  temperatureElement.innerHTML = `${fahrenheitTemp}°`;
-  celsiuslink.classList.remove("active");
-  fahrenheitlink.classList.add("active");
-}
-function showCelsiusTemp(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = `${celsiusTemp}°`;
-  celsiuslink.classList.add("active");
-  fahrenheitlink.classList.remove("active");
-}
- */
-function showFahrenheitTemp(event) {
-  event.preventDefault();
   let temperatureElement = document.querySelector("#temperature");
   let celsiusTemp = parseFloat(temperatureElement.innerHTML);
   let fahrenheitTemp = Math.round((celsiusTemp * 9) / 5 + 32);
