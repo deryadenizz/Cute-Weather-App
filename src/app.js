@@ -55,7 +55,7 @@ function formatForecastDay(timestamp, index) {
 
 let apiKey = "c9e178d3343o502b6177fca9t3bf1da8";
 let cityName = "İstanbul";
-let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${cityName}}&key=${apiKey}&units=metric`;
+let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${cityName}&key=${apiKey}&units=metric`;
 axios.get(apiUrl).then(showCurrentWeather);
 
 function displayForecast(response) {
@@ -110,6 +110,7 @@ function showCity(event) {
   apiUrl = `https://api.shecodes.io/weather/v1/current?query=${cityName}}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showCurrentWeather);
   getForecast(cityName);
+  showCelsiusTemp(event);
 }
 
 let showLocation = document.querySelector("#selectCity");
@@ -184,16 +185,19 @@ function showCelsiusTemp(event) {
   let forecastTempMaxElements = document.querySelectorAll(
     "[id^='forecasttemp-max-']"
   );
-  forecastTempMaxElements.forEach(function (forecastTempElement) {
-    fahrenheitTemp = parseFloat(forecastTempElement.innerHTML);
-    forecastTempElement.innerHTML = `${celsiusTemp}°`;
+  forecastTempMaxElements.forEach(function (forecastTempElement, index) {
+    let fahrenheitTempMax = parseFloat(forecastTempElement.innerHTML);
+    let celsiusTempMax = Math.round(((fahrenheitTempMax - 32) * 5) / 9);
+    forecastTempElement.innerHTML = `${celsiusTempMax}°`;
   });
+
   let forecastTempMinElements = document.querySelectorAll(
     "[id^='forecasttemp-min-']"
   );
-  forecastTempMinElements.forEach(function (forecastTempElement) {
-    fahrenheitTemp = parseFloat(forecastTempElement.innerHTML);
-    forecastTempElement.innerHTML = `${celsiusTemp}°`;
+  forecastTempMinElements.forEach(function (forecastTempElement, index) {
+    let fahrenheitTempMin = parseFloat(forecastTempElement.innerHTML);
+    let celsiusTempMin = Math.round(((fahrenheitTempMin - 32) * 5) / 9);
+    forecastTempElement.innerHTML = `${celsiusTempMin}°`;
   });
 
   celsiuslink.classList.add("active");
